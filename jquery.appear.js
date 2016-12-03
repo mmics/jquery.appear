@@ -47,6 +47,10 @@
     $prior_appeared.push();
   }
 
+  function remove_selector(selector) {
+    selectors.pop(selector);
+  }
+
   // "appeared" custom filter
   $.expr[':'].appeared = function(element) {
     var $element = $(element);
@@ -94,7 +98,14 @@
       }
       add_selector(selector);
       return $(selector);
+    },
+    
+    unappear: function() {
+      var selector = this.selector || this;
+      remove_selector(selector);
+      return $(selector);
     }
+    
   });
 
   $.extend({
